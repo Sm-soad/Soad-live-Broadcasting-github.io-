@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>লাইভ স্ট্রিমিং ওয়েবসাইট</title>
+  <style>
+    /* ফোরকে ব্যাকগ্রাউন্ড */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: url('https://wallpaperaccess.com/full/39657.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    /* ইন্ট্রো সেকশন */
+    .intro {
+      width: 80%;
+      margin: 20px auto;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      border: 2px solid white;
+    }
+
+    .intro h1 {
+      color: yellow;
+      font-size: 28px;
+    }
+
+    .intro p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* উপরের বড় ডিসপ্লে */
+    .display-container {
+      width: 80%;
+      height: 400px;
+      background-color: black;
+      margin: 20px auto;
+      position: relative;
+      border: 5px solid blue;
+      overflow: hidden;
+    }
+    /* ডিসপ্লে লাইভ স্ট্রিম */
+    #displayFrame {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* "SOAD LIVE STREAMING" টেক্সট যা নড়াচড়া করবে */
+    .live-title {
+      position: absolute;
+      font-size: 10px;
+      color: white;
+      background: rgb(0, 0, 0);
+      padding: 5px 15px;
+      font-weight: small;
+      border-radius: 5px;
+    }
+
+    /* লাইভ চ্যানেল কন্টেইনার */
+    .channel-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    /* প্রতিটি চ্যানেলের ডিজাইন */
+    .channel {
+      width: 200px;
+      height: 120px;
+      cursor: pointer;
+      border: 2px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .channel:nth-child(1) { background-color: #474747; }
+    .channel:nth-child(2) { background-color: #474747; }
+    .channel:nth-child(3) { background-color: #474747; }
+    .channel:nth-child(4) { background-color: #717171; }
+    .channel:nth-child(5) { background-color: #474747; }
+
+    .channel:hover {
+      opacity: 0.8;
+    }
+
+    /* বায়ো সেকশন */
+    .bio-section {
+      width: 80%;
+      margin: 30px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      border: 2px solid white;
+      text-align: left;
+    }
+
+    .bio-section h2 {
+      text-align: center;
+      color: yellow;
+    }
+
+    .bio-section p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
