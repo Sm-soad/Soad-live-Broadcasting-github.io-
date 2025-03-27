@@ -117,3 +117,74 @@
   </style>
 </head>
 <body>
+  <!-- ইন্ট্রো সেকশন -->
+  <div class="intro">
+    <h1>Welcome to SOAD LIVE Broadcast</h1>
+    <p>আপনি যে কোন একটি নিউজ চ্যানেল সিলেক্ট করুন এবং লাইভ সম্প্রচার উপভোগ করুন!</p>
+  </div>
+
+  <!-- উপরের লাইভ স্ট্রিম ডিসপ্লে -->
+  <div class="display-container">
+    <!-- "Welcome SOAD LIVE Broadcast" বার্তা -->
+    <div class="intro-text">Welcome SOAD LIVE Broadcast</div>
+    <div class="live-title" id="movingText">SOAD LIVE STREAMING</div>
+    <iframe id="displayFrame" src="https://www.youtube.com/embed/live_stream?channel=UCJX5XFKMpu0n3aIFQm8eJpA" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <!-- লাইভ চ্যানেল তালিকা -->
+  <div class="channel-container">
+    <div class="channel" onclick="changeStream('https://jamuna.tv/live')">Jamuna Tv</div>
+    <div class="channel" onclick="changeStream('https://www.news24bd.tv/live-tv')">News24</div>
+    <div class="channel" onclick="changeStream('https://www.somoynews.tv/tv')">somoynews</div>
+    <div class="channel" onclick="changeStream('https://atnbanglaonline.tv/')">ATN binodon</div>
+    <div class="channel" onclick="changeStream('https://www.ntvbd.com/livetv')">চ্যানেল 5</div>
+  </div>
+  
+  <!-- বায়ো সেকশন -->
+  <div class="bio-section">
+    <h2>Developed By SOAD</h2>
+    <p>
+      এই ওয়েবসাইটটি বিশেষভাবে লাইভ স্ট্রিমিং পরিষেবার জন্য তৈরি করা হয়েছে। এখানে আপনি বিভিন্ন নিউজ চ্যানেল ও অন্যান্য লাইভ সম্প্রচার দেখতে পারবেন।  
+      আমাদের লক্ষ্য হলো সহজে এবং দ্রুত লাইভ কনটেন্ট উপভোগের ব্যবস্থা করা।  
+    </p>
+    <p>
+      যোগাযোগ:  
+      ইমেইল: smsoad85@gmail.com  
+      ফোন: +8801816004207  
+    </p>
+  </div>
+
+  <script>
+    function changeStream(url) {
+      document.getElementById('displayFrame').src = url;
+    }
+
+    function moveText() {
+      let text = document.getElementById('movingText');
+      let container = document.querySelector('.display-container');
+      let x = 10, y = 10;
+      let dx = 2, dy = 2;
+      let maxX = container.clientWidth - text.clientWidth;
+      let maxY = container.clientHeight - text.clientHeight;
+
+      function animate() {
+        x += dx;
+        y += dy;
+
+        if (x <= 0 || x >= maxX) dx *= -1;
+        if (y <= 0 || y >= maxY) dy *= -1;
+
+        text.style.left = x + 'px';
+        text.style.top = y + 'px';
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    }
+
+    window.onload = moveText;
+  </script>
+
+</body>
+</html
