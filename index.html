@@ -44,10 +44,22 @@
       border: 5px solid blue;
       overflow: hidden;
     }
-/* ডিসপ্লে লাইভ স্ট্রিম */
+
+    /* ডিসপ্লে লাইভ স্ট্রিম */
     #displayFrame {
       width: 100%;
       height: 100%;
+    }
+
+    /* "SOAD LIVE STREAMING" টেক্সট যা নড়াচড়া করবে */
+    .live-title {
+      position: absolute;
+      font-size: 14px;
+      color: white;
+      background: rgb(0, 0, 0);
+      padding: 5px 15px;
+      font-weight: bold;
+      border-radius: 5px;
     }
 
     /* লাইভ চ্যানেল কন্টেইনার */
@@ -109,6 +121,7 @@
 
   <!-- উপরের লাইভ স্ট্রিম ডিসপ্লে -->
   <div class="display-container">
+    <div class="live-title" id="movingText">SOAD LIVE STREAMING</div>
     <iframe id="displayFrame" src="https://www.youtube.com/embed/live_stream?channel=UCJX5XFKMpu0n3aIFQm8eJpA" frameborder="0" allowfullscreen></iframe>
   </div>
 
@@ -146,11 +159,37 @@
       document.getElementById('displayFrame').src = url;
     }
 
+    // "SOAD LIVE STREAMING" টেক্সট নড়াচড়া করানো
+    function moveText() {
+      let text = document.getElementById('movingText');
+      let container = document.querySelector('.display-container');
+      let x = 10, y = 10;
+      let dx = 2, dy = 2;
+      let maxX = container.clientWidth - text.clientWidth;
+      let maxY = container.clientHeight - text.clientHeight;
+
+      function animate() {
+        x += dx;
+        y += dy;
+
+        if (x <= 0 || x >= maxX) dx *= -1;
+        if (y <= 0 || y >= maxY) dy *= -1;
+
+        text.style.left = x + 'px';
+        text.style.top = y + 'px';
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    }
+
     // অডিও স্বয়ংক্রিয় চালানোর জন্য
     window.onload = function() {
       document.getElementById('welcomeAudio').play();
+      moveText();  // "SOAD LIVE STREAMING" নড়াচড়া করবে
     };
   </script>
 
 </body>
-  </html>
+</html>
