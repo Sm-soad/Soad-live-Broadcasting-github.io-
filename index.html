@@ -34,7 +34,7 @@
       font-weight: bold;
     }
 
-    /* লাইভ স্ট্রিম ডিসপ্লে */
+    /* উপরের বড় ডিসপ্লে */
     .display-container {
       width: 80%;
       height: 400px;
@@ -44,15 +44,20 @@
       border: 5px solid blue;
       overflow: hidden;
     }
+    /* ডিসপ্লে লাইভ স্ট্রিম */
+    #displayFrame {
+      width: 100%;
+      height: 100%;
+    }
 
-    /* ডিসপ্লেতে নড়াচড়া করা টেক্সট */
+    /* "SOAD LIVE STREAMING" টেক্সট যা নড়াচড়া করবে */
     .live-title {
       position: absolute;
-      font-size: 18px;
+      font-size: 10px;
       color: white;
       background: rgb(0, 0, 0);
       padding: 5px 15px;
-      font-weight: bold;
+      font-weight: small;
       border-radius: 5px;
     }
 
@@ -77,8 +82,13 @@
       font-size: 18px;
       font-weight: bold;
       color: white;
-      background-color: #474747;
     }
+
+    .channel:nth-child(1) { background-color: #474747; }
+    .channel:nth-child(2) { background-color: #474747; }
+    .channel:nth-child(3) { background-color: #474747; }
+    .channel:nth-child(4) { background-color: #717171; }
+    .channel:nth-child(5) { background-color: #474747; }
 
     .channel:hover {
       opacity: 0.8;
@@ -107,14 +117,16 @@
   </style>
 </head>
 <body>
-  <!-- ইন্ট্রো সেকশন -->
+<!-- ইন্ট্রো সেকশন -->
   <div class="intro">
     <h1>Welcome to SOAD LIVE Broadcast</h1>
     <p>আপনি যে কোন একটি নিউজ চ্যানেল সিলেক্ট করুন এবং লাইভ সম্প্রচার উপভোগ করুন!</p>
   </div>
 
-  <!-- লাইভ স্ট্রিম ডিসপ্লে -->
+  <!-- উপরের লাইভ স্ট্রিম ডিসপ্লে -->
   <div class="display-container">
+    <!-- "Welcome SOAD LIVE Broadcast" বার্তা -->
+    <div class="intro-text">Welcome SOAD LIVE Broadcast</div>
     <div class="live-title" id="movingText">SOAD LIVE STREAMING</div>
     <iframe id="displayFrame" src="https://www.youtube.com/embed/live_stream?channel=UCJX5XFKMpu0n3aIFQm8eJpA" frameborder="0" allowfullscreen></iframe>
   </div>
@@ -123,10 +135,9 @@
   <div class="channel-container">
     <div class="channel" onclick="changeStream('https://jamuna.tv/live')">Jamuna Tv</div>
     <div class="channel" onclick="changeStream('https://www.news24bd.tv/live-tv')">News24</div>
-    <div class="channel" onclick="changeStream('https://www.somoynews.tv/tv')">SOMOY TV</div>
+    <div class="channel" onclick="changeStream('https://www.somoynews.tv/tv')">somoynews</div>
     <div class="channel" onclick="changeStream('https://atnbanglaonline.tv/')">ATN binodon</div>
-    <div class="channel" onclick="changeStream('https://dbcnews.tv/live')">DBC NEWS</div>
-    <div class="channel" onclick="changeStream('https://www.desh.tv/live')">DESH TV</div>
+    <div class="channel" onclick="changeStream('https://www.ntvbd.com/livetv')">চ্যানেল 5</div>
   </div>
 
   <!-- বায়ো সেকশন -->
@@ -143,21 +154,14 @@
     </p>
   </div>
 
-  <!-- অডিও স্বয়ংক্রিয়ভাবে চালানোর জন্য -->
-  <audio id="welcomeAudio" autoplay>
-    <source src="https://www.myinstants.com/media/sounds/welcome.mp3" type="audio/mpeg">
-  </audio>
-
   <script>
     function changeStream(url) {
       document.getElementById('displayFrame').src = url;
     }
 
-    // "SOAD LIVE STREAMING" টেক্সট স্ক্রিনে নড়াচড়া করানো
     function moveText() {
       let text = document.getElementById('movingText');
       let container = document.querySelector('.display-container');
-      
       let x = 10, y = 10;
       let dx = 2, dy = 2;
       let maxX = container.clientWidth - text.clientWidth;
@@ -170,7 +174,8 @@
         if (x <= 0 || x >= maxX) dx *= -1;
         if (y <= 0 || y >= maxY) dy *= -1;
 
-        text.style.transform = `translate(${x}px, ${y}px)`;
+        text.style.left = x + 'px';
+        text.style.top = y + 'px';
 
         requestAnimationFrame(animate);
       }
@@ -178,12 +183,8 @@
       animate();
     }
 
-    // অডিও স্বয়ংক্রিয় চালানোর জন্য
-    window.onload = function() {
-      document.getElementById('welcomeAudio').play();
-      moveText();  // "SOAD LIVE STREAMING" নড়াচড়া করবে
-    };
+    window.onload = moveText;
   </script>
 
 </body>
-</html>
+</html
